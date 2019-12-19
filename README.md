@@ -145,7 +145,7 @@ B端用户将生成的群签名通过AMOP发送给上链结构（如agency），
 - git：用于拉取最新代码
 - dos2unix && lsof: 用于处理windows文件上传到linux服务器时，可执行文件无法被linux正确解析的问题；
 
-可用如下命令安装这些基础依赖软件：
+可用如下命令安装这些基础依赖软件（注意区分 centos 和 ubuntu 系统使用的命令）：
 
 ```bash
 [centos]
@@ -153,13 +153,17 @@ sudo yum -y install git
 sudo yum -y install dos2unix
 sudo yum -y install java
 sudo yum -y install lsof
+sudo yum -y install libjsonrpccpp-dev libjsonrpccpp-tools
 
 [ubuntu]
 sudo apt install git
 sudo apt install lsof
 sudo apt install tofrodos
-ln -s /usr/bin/todos /usr/bin/unxi2dos
-ln -s /usr/bin/fromdos /usr/bin/dos2unix
+sudo apt install libjsonrpccpp-dev libjsonrpccpp-tools
+
+
+sudo ln -s /usr/bin/todos /usr/bin/unix2dos
+sudo ln -s /usr/bin/fromdos /usr/bin/dos2unix
 ```
 
 部署dos2unix后，调用format.sh脚本格式化可执行文件，使其可被linux系统正确解析：
@@ -309,13 +313,13 @@ sig-service目录下存着一个日志配置文件示例log.conf，其内容如�
 用户启动群签名&&环签名RPC服务时，用-l或--log_path选项设置日志路径，或者直接将log.conf拷贝到编译生成的可执行文件同一路径，不指定-l或--log_path，一个简单的启动例子如下：
 
 ```bash
-#在8005端口启动群签名&&环签名RPC服务，日志配置文件路径是bak/log.conf； 开启的http线程数目是1000
-[app@VM_105_81_centos sig-service]$ chmod +x build/server && ./build/server -p 8005 -n 1000 -l bak/log.conf 
-port:8005 thread:1000
+#在 8003 端口启动群签名&&环签名 RPC 服务，日志配置文件路径是 bak/log.conf； 开启的 http 线程数目是 1000
+[app@VM_105_81_centos sig-service]$ chmod +x build/server && ./build/server -p 8003 -n 1000 -l bak/log.conf 
+port:8003 thread:1000
 ADD HTTP CONNECTOR TO test_server
-start listening on port 8005
+start listening on port 8003
 ###若要把server放到后台执行,则可借助screen, tmux, nohup等工具，用nohup将程序放到后台执行的命令示例：
-chmod +x build/server && nohup  ./build/server -p 8005 -n 1000 -l bak/log.conf > result.log 2>&1 &
+chmod +x build/server && nohup  ./build/server -p 8003 -n 1000 -l bak/log.conf > result.log 2>&1 &
 ```
 
 <br>
