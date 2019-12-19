@@ -1,3 +1,21 @@
+<br>
+
+[部署过程参考](https://steve.blog.csdn.net/article/details/103620668)
+
+<br>
+
+**我对这个开源库的主要修改：**
+ - README.md —— 2.1 部署依赖软件包:
+	- 将  `ln -s /usr/bin/todos /usr/bin/unxi2dos ` 修改为 `sudo ln -s /usr/bin/todos /usr/bin/unix2dos`
+	- 将  `ln -s /usr/bin/fromdos /usr/bin/dos2unix ` 修改为 `sudo ln -s /usr/bin/fromdos /usr/bin/dos2unix`
+	- 添加 `sudo apt install libjsonrpccpp-dev libjsonrpccpp-tools`
+- README.md —— 2.3 使用说明：
+	- 最后的启动示例，将监听端口修改为 8003，与客户端示例保持一致。
+- sig-service/devcore/ConfigParser.h ：
+	- 将文件中 第 73 行的`<S>`删除
+
+<br>
+
 # 群签名&&环签名RPC服务操作手册
 ## 目录
 <!-- TOC -->
