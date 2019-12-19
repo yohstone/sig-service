@@ -70,7 +70,7 @@ namespace eth
             template <typename S, typename... Args>
             S get_value(Args&&... args)
             {
-                return config_obj->get_value<S>(std::forward<Args>(args)...);
+                return config_obj->get_value(std::forward<Args>(args)...);
             }
 
             /*
